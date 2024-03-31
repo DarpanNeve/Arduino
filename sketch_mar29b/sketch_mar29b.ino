@@ -3,8 +3,8 @@
 #include "esp_camera.h"
 
 // Replace with your network credentials
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
+const char* ssid = "Santosh hostel b 15_5G";
+const char* password = "Shekhar@1015";
 
 // This macro will create a HTTPAsyncWebServer instance listening on port 80
 AsyncWebServer server(80);
