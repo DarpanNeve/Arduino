@@ -1,11 +1,51 @@
+/*
+Author : ChungYi Fu (Kaohsiung, Taiwan)  2021-7-3 22:00
+https://www.facebook.com/francefu
 
-//Wifi
-const char* ssid     = "Santosh hostel b 15_5G";   //your network SSID
-const char* password = "Shekhar@1015";   //your network password
+http://192.168.xxx.xxx             // Web homepage management interface
+http://192.168.xxx.xxx:81/stream   // Get streaming video       <img src="http://192.168.xxx.xxx:81/stream">
+http://192.168.xxx.xxx/capture     // Get image          <img src="http://192.168.xxx.xxx/capture">
+http://192.168.xxx.xxx/status      // Get video parameter values
 
-//入AP
+自訂指令格式 :  
+http://APIP/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
+http://STAIP/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
+
+預設AP端IP： 192.168.4.1
+
+自訂指令格式 http://192.168.xxx.xxx/control?cmd=P1;P2;P3;P4;P5;P6;P7;P8;P9
+http://192.168.xxx.xxx/control?ip                      //取得APIP, STAIP
+http://192.168.xxx.xxx/control?mac                     //取得MAC位址
+http://192.168.xxx.xxx/control?restart                 //重啟ESP32-CAM
+http://192.168.xxx.xxx/control?digitalwrite=pin;value  //數位輸出
+http://192.168.xxx.xxx/control?analogwrite=pin;value   //類比輸出
+http://192.168.xxx.xxx/control?digitalread=pin         //數位讀取
+http://192.168.xxx.xxx/control?analogread=pin          //類比讀取
+http://192.168.xxx.xxx/control?touchread=pin           //觸碰讀取
+http://192.168.xxx.xxx/control?resetwifi=ssid;password   //重設Wi-Fi網路
+http://192.168.xxx.xxx/control?flash=value             //內建閃光燈 value= 0~255
+
+官方指令格式 http://192.168.xxx.xxx/control?var=***&val=***
+http://192.168.xxx.xxx/control?var=framesize&val=value    // value = 10->UXGA(1600x1200), 9->SXGA(1280x1024), 8->XGA(1024x768) ,7->SVGA(800x600), 6->VGA(640x480), 5 selected=selected->CIF(400x296), 4->QVGA(320x240), 3->HQVGA(240x176), 0->QQVGA(160x120)
+http://192.168.xxx.xxx/control?var=quality&val=value      // value = 10 ~ 63
+http://192.168.xxx.xxx/control?var=brightness&val=value   // value = -2 ~ 2
+http://192.168.xxx.xxx/control?var=contrast&val=value     // value = -2 ~ 2
+http://192.168.xxx.xxx/control?var=hmirror&val=value      // value = 0 or 1 
+http://192.168.xxx.xxx/control?var=vflip&val=value        // value = 0 or 1 
+http://192.168.xxx.xxx/control?var=flash&val=value        // value = 0 ~ 255   
+      
+
+"Inquire Client-side IP:
+Query IP: http://192.168.4.1/?ip
+Reset Network: http://192.168.4.1/?resetwifi=ssid;password"*/
+
+// Input WiFi connection username and password:
+const char* ssid     = "DarpanN";   //your network SSID
+const char* password = "12345670";   //your network password
+
+//輸入AP端連線帳號密碼
 const char* apssid = "ESP32-CAM";
-const char* appassword = "12345678";      
+const char* appassword = "12345678";         //AP密碼至少要8個字元以上
 
 #include <WiFi.h>
 #include <esp32-hal-ledc.h>      //用於控制伺服馬達
