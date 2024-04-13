@@ -1,13 +1,10 @@
 #define CAMERA_MODEL_AI_THINKER // Has PSRAM
 
-const char* ssid = "DarpanN";
-const char* password = "12345670";  //your network password
+const char* ssid = "Airtel_9156106828";
+const char* password = "air78877";  //your network password
 
 const char* apssid = "ESP32-CAM";
 const char* appassword = "12345678";
-
-
-
 #include <WiFi.h>
 #include <esp32-hal-ledc.h>
 #include "soc/soc.h"
@@ -535,7 +532,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(<!doctype html>
                         </div>
                         <div class="input-group">
                           <label for="modelPath">Model Path</label>
-                          <input type="text" id="modelPath" value=https://teachablemachine.withgoogle.com/models/CcUd5ll0g/>
+                          <input type="text" id="modelPath" value=https://teachablemachine.withgoogle.com/models/1x0k0ePsC/>
                         </div>
                         <div class="input-group">
                             <label for="btnModel"></label>
